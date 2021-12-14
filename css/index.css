@@ -115,6 +115,7 @@ main .content {
 main aside {
   width: 40%;
   height: 100%;
+  /* background: #d4309e; */
 }
 
 .content .weather_today {

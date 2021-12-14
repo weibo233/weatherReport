@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气预报</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./font/qweather-icons.css">
+    <link rel="stylesheet" href="./css/fontSize.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script type="module" src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="./js/day.js"></script>
+    <script src="./font/qweather-icons.json"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/component.js"></script>
+    <script src="./js/router.js"></script>
+    <script src="./js/axios.js"></script>
+    <script src="./App.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <!-- 搜索框 -->
+            <div class="search">
+                <div class="MainMenuHeader--wrapper">
+                    <logo title="The Weather Channel"></logo>
+                    <div>
+                        <el-autocomplete v-model="cityOrCode" :fetch-suggestions="querySearchAsync"
+                            placeholder="请输入城市或经度,纬度坐标（十进制）" @select="handleSelect" class="searchInput">
+                        </el-autocomplete>
+                        </el-input>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelectOptions">
+            <el-menu-item index="1">今天</el-menu-item>
+            <el-menu-item index="2"> 每小时</el-menu-item>
+            <el-menu-item index="3">10天</el-menu-item>
+            <el-menu-item index="4">周末</el-menu-item>
+        </el-menu>
+        <main>
+            <div class="content">
+                <div class="weather_today">
+                    <div class="text">
+                        <h1>{{name}}天气</h1>
+                        <p class="jz">截止{{updateTime}}</p>
+                        <p class="du">{{now.temp}}</p>
+                        <p class="status">{{now.text}}</p>
+                        <p>数据观测时间: {{now.obsTime}}</p>
+                        <p>温度，默认单位： 摄氏度{{now.temp}}</p>
+                        <p>体感温度，默认单位： 摄氏度{{now.feelsLike}}</p>
+                        <p>天气状况的文字描述，包括阴晴雨雪等天气状态的描述: {{now.text}}</p>
+                        <p>风向360角度: {{now.wind360}}</p>
+                        <p>风向: {{now.windDir}}</p>
+                        <p>风力等级: {{now.windScale}}</p>
+                        <p>风速，公里/小时: {{now.windSpeed}}</p>
+                        <p>相对湿度，百分比数值: {{now.humidity}}</p>
+                        <p>当前小时累计降水量，默认单位：毫米 {{now.precip}}</p>
+                        <p>大气压强，默认单位：百帕 {{now.pressure}}</p>
+                        <p>能见度，默认单位：公里 {{now.vis}}</p>
+                        <p>云量，百分比数值 {{now.cloud}}</p>
+                        <p> 露点温度 {{now.dew}}</p>
+                        <p> 原始数据来源，或数据源说明，可能为空 {{now.sources}}</p>
+                        <p> 数据许可或版权声明，可能为空 {{now.license}}</p>
+                    </div>
+                    <i class="qi-100 size150"></i>
+                </div>
+            </div>
+            <aside></aside>
+        </main>
+
+
+
+
+        <!-- <p>
+            <router-link to="/foo">Go to Foo</router-link>
+            <router-link to="/bar">Go to Bar</router-link>
+        </p> -->
+        <!-- 路由出口 -->
+        <!-- <router-view></router-view> -->
+    </div>
+</body>
+
+</html>
