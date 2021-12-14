@@ -21,35 +21,43 @@ window.onload = function () {
       name:"",
       activeIndex:1
     },
-    mounted() {},
+    mounted() {
+      this.querySearchAsync("北京").then((res)=>{
+        this.handleSelect(res)
+      })
+    },
     methods: {
       querySearchAsync(queryString, callback) {
         if (!queryString) {
           callback("");
           return;
         }
-        axios
-          .get(
-            `https://geoapi.qweather.com/v2/city/lookup?location=${queryString}&key=${this.key}`
-          )
-          .then((res) => {
-            let { code, location } = res.data;
-            if (code == 200) {
-              callback(
-                location.map((item) => {
-                  return {
-                    value: item.name,
-                    ...item,
-                  };
-                })
-              );
-            } else {
-              this.$message({
-                message: "输入不正确！",
-                type: "warning",
-              });
-            }
-          });
+        return new Promise((resovle,reject)=>{
+          axios
+            .get(
+              `https://geoapi.qweather.com/v2/city/lookup?location=${queryString}&key=${this.key}`
+            )
+            .then((res) => {
+              let { code, location } = res.data;
+              if (code == 200) {
+                resovle(location[0])
+                callback(
+                  location.map((item) => {
+                    return {
+                      value: item.name,
+                      ...item,
+                    };
+                  })
+                );
+              } else {
+                reject()
+                this.$message({
+                  message: "输入不正确！",
+                  type: "warning",
+                });
+              }
+            });
+        })
       },
       handleSelect(item) {
         this.name = item.name
