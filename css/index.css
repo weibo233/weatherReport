@@ -1,0 +1,154 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  /* color: #fff; */
+}
+
+html {
+  font-size: 100px;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-image: linear-gradient(#69a9bf, #a3d4dd, #f8fcfd);
+}
+
+.el-row {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+#app {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+#app header {
+}
+
+/* 搜索框 */
+header .search {
+  width: 100%;
+  height: 82px;
+  background-color: #046f94;
+}
+
+.search .MainMenuHeader--wrapper {
+  padding: 11px 11px 11px 6px;
+  max-width: 1280px;
+  width: 60%;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
+  height: 82px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.MainMenuHeader--wrapper .searchInput {
+  padding: 5px 6px;
+  border: 0;
+  border-radius: 20px;
+  background: hsla(0, 0%, 100%, 0.2);
+  text-align: center;
+  width: 380px;
+  height: 38px;
+}
+
+.searchInput input {
+  position: relative;
+  background: rgba(0, 0, 0, 0);
+  border: none !important;
+  color: #fff;
+}
+.search_btn {
+  border-radius: 20px !important;
+  background: hsla(0, 0%, 100%, 0.2) !important;
+  transform: translateX(12px);
+  border: none !important;
+  position: absolute;
+  top: 22px;
+  left: 1302px;
+}
+.search #logo {
+  width: 2rem;
+  height: 0.05rem;
+  display: flex;
+  align-items: center;
+  padding-right: 30px;
+}
+#logo svg {
+  width: 60px;
+  height: 60px;
+  padding: 0 4px 0 12px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+#logo .img {
+  width: 130px;
+  height: 30px;
+}
+
+main {
+  width: 11.38rem;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+main .content {
+  flex: 1;
+}
+
+main aside {
+  width: 40%;
+  height: 100%;
+}
+
+.content .weather_today {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 33px 22px 27px;
+  border-radius: 6px;
+  box-shadow: 0 0 12px 0 rgb(0 0 0 / 20%);
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.weather_today h1 {
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.weather_today .jz {
+  opacity: .65;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 0.51rem;
+}
+
+.weather_today .du {
+  display: block;
+  position: relative;
+  font-size: 0.75rem;
+  line-height: .96em;
+  font-weight: 500;
+}
+
+.weather_today .status {
+    font-size: 30px;
+}

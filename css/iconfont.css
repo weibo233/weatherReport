@@ -1,0 +1,171 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3013861 */
+  src: url('iconfont.woff2?t=1639445734141') format('woff2'),
+       url('iconfont.woff?t=1639445734141') format('woff'),
+       url('iconfont.ttf?t=1639445734141') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-l_return_icon:before {
+  content: "\e773";
+}
+
+.icon-weather:before {
+  content: "\e8c8";
+}
+
+.icon-weather2:before {
+  content: "\e8c9";
+}
+
+.icon-weather3:before {
+  content: "\e8ca";
+}
+
+.icon-weather4:before {
+  content: "\e8cb";
+}
+
+.icon-weather5:before {
+  content: "\e8cc";
+}
+
+.icon-weathercloudy:before {
+  content: "\eb74";
+}
+
+.icon-weatherhail:before {
+  content: "\eb76";
+}
+
+.icon-weathernight:before {
+  content: "\eb78";
+}
+
+.icon-weatherpouring:before {
+  content: "\eb7a";
+}
+
+.icon-weatherrainy:before {
+  content: "\eb7b";
+}
+
+.icon-weathersnowy:before {
+  content: "\eb87";
+}
+
+.icon-weathersunny:before {
+  content: "\eb88";
+}
+
+.icon-weathersunset:before {
+  content: "\eb89";
+}
+
+.icon-weatherwindy:before {
+  content: "\eb8c";
+}
+
+.icon-weather1:before {
+  content: "\e615";
+}
+
+.icon-weather_thundershower_big:before {
+  content: "\e62f";
+}
+
+.icon-weather_fog_big:before {
+  content: "\e630";
+}
+
+.icon-weather_hail_big:before {
+  content: "\e631";
+}
+
+.icon-weather_snow_heavy_big:before {
+  content: "\e632";
+}
+
+.icon-weather_rain_heavy_big:before {
+  content: "\e633";
+}
+
+.icon-weather_overcast_big:before {
+  content: "\e634";
+}
+
+.icon-WeatherFog-1:before {
+  content: "\e6e3";
+}
+
+.icon-WeatherThunderstorm:before {
+  content: "\e6e5";
+}
+
+.icon-WeatherRain:before {
+  content: "\e6f3";
+}
+
+.icon-WeatherSunny-1:before {
+  content: "\e6f4";
+}
+
+.icon-WeatherHailDay:before {
+  content: "\e6f5";
+}
+
+.icon-WeatherSnowShowerDay:before {
+  content: "\e6f6";
+}
+
+.icon-WeatherCloudy:before {
+  content: "\e6e8";
+}
+
+.icon-WeatherSnow-1:before {
+  content: "\e6f7";
+}
+
+.icon-WeatherCloudy-1:before {
+  content: "\e6fa";
+}
+
+.icon-WeatherThunderstorm-1:before {
+  content: "\e6fc";
+}
+
+.icon-WeatherSnow:before {
+  content: "\e704";
+}
+
+.icon-WeatherSqualls:before {
+  content: "\e70d";
+}
+
+.icon-WeatherMoon-1:before {
+  content: "\e711";
+}
+
+.icon-WeatherRainShowersDay:before {
+  content: "\e717";
+}
+
+.icon-WeatherMoon:before {
+  content: "\e71f";
+}
+
+.icon-TimeAndWeather:before {
+  content: "\e721";
+}
+
+.icon-weather6:before {
+  content: "\e616";
+}
+

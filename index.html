@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气预报</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./icon/iconfont.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script type="module" src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="./icon/iconfont.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/component.js"></script>
+    <script src="./js/router.js"></script>
+    <script src="./js/axios.js"></script>
+    <script src="./App.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <!-- 搜索框 -->
+            <div class="search">
+                <div class="MainMenuHeader--wrapper">
+                    <logo title="The Weather Channel"></logo>
+                    <div>
+                        <el-autocomplete v-model="cityOrCode" :fetch-suggestions="querySearchAsync"
+                            placeholder="请输入城市或经度,纬度坐标（十进制）" @select="handleSelect" class="searchInput">
+                        </el-autocomplete>
+                        </el-input>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+
+            <div class="content">
+                <div class="weather_today">
+                    <div class="text">
+                        <h1>Beijing天气</h1>
+                        <p class="jz">截止09:06CST</p>
+                        <p class="du">-2℃</p>
+                        <p class="status">晴朗</p>
+                    </div>
+                    <my-icon title="tianqiyubao1" style="font-size: 150px;"></my-icon>
+                </div>
+            </div>
+            <aside></aside>
+        </main>
+
+
+
+
+        <!-- <p>
+            <router-link to="/foo">Go to Foo</router-link>
+            <router-link to="/bar">Go to Bar</router-link>
+        </p> -->
+        <!-- 路由出口 -->
+        <!-- <router-view></router-view> -->
+    </div>
+</body>
+
+</html>
