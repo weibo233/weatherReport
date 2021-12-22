@@ -1,0 +1,361 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+   
+}
+
+#app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    width: 100%;
+    background: #544;
+}
+
+/* 搜索框 */
+.header .search {
+    width: 100%;
+    height: 82px;
+    background-color: #046f94;
+  }
+  
+  .search .MainMenuHeader--wrapper {
+    padding: 11px 11px 11px 6px;
+    max-width: 1280px;
+    width: 60%;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+    height: 82px;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  .MainMenuHeader--wrapper .searchInput {
+    padding: 5px 6px;
+    border: 0;
+    border-radius: 20px;
+    background: hsla(0, 0%, 100%, 0.2);
+    text-align: center;
+    width: 380px;
+    height: 38px;
+  }
+  
+  .searchInput input {
+    position: relative;
+    background: rgba(0, 0, 0, 0);
+    border: none !important;
+    color: #fff;
+  }
+  .search_btn {
+    border-radius: 20px !important;
+    background: hsla(0, 0%, 100%, 0.2) !important;
+    transform: translateX(12px);
+    border: none !important;
+    position: absolute;
+    top: 22px;
+    left: 1302px;
+  }
+  .search #logo {
+    width: 40rem !important;
+    height: 40rem !important;
+    display: flex;
+    align-items: center;
+    padding-right: 30px;
+  }
+  #logo svg {
+    width: 60px;
+    height: 60px;
+    padding: 0 4px 0 12px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+  }
+  #logo .img {
+    width: 130px;
+    height: 30px;
+  }
+.header .search {
+    width: 100%;
+    height: 82px;
+    background-color: #2B2C2E;
+  }
+
+  .search .MainMenuHeader--wrapper {
+    padding: 11px 11px 11px 6px;
+    max-width: 1280px;
+    width: 60%;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+    height: 82px;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  .MainMenuHeader--wrapper .searchInput {
+    padding: 5px 6px;
+    border: 0;
+    border-radius: 20px;
+    background: hsla(0, 0%, 100%, 0.2);
+    text-align: center;
+    width: 380px;
+    height: 38px;
+  }
+  
+  .searchInput input {
+    position: relative;
+    background: rgba(0, 0, 0, 0);
+    border: none !important;
+    color: #fff;
+  }
+  .search_btn {
+    border-radius: 20px !important;
+    background: hsla(0, 0%, 100%, 0.2) !important;
+    transform: translateX(12px);
+    border: none !important;
+    position: absolute;
+    top: 22px;
+    left: 1302px;
+  }
+  .search #logo {
+    width: 2rem;
+    height: 0.05rem;
+    display: flex;
+    align-items: center;
+    padding-right: 30px;
+  }
+  #logo svg {
+    width: 60px;
+    height: 60px;
+    padding: 0 4px 0 12px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+  }
+  #logo .img {
+    width: 130px;
+    height: 30px;
+  }
+
+/* main区域 */
+.main {
+    flex: 1;
+    background: #1469a7;
+}
+
+.main .center {
+    width: 90%;
+    max-width: 1162px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 20px 0 20px 0;
+}
+
+.main .main_left{
+    width: 69%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.main_left  .item1,.main_left .item2,.main_left .item3,.main_left .item4,.main_left .item5,.main_left .item6 {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.item1 {
+    padding: 20px 33px 22px 27px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+}
+.item1 .wea {
+    line-height: 1.5;
+    font-size: 6rem;
+    font-weight: 700;
+    text-align: left;
+    color: white;
+}
+
+
+.item1 h1 {
+    font-size: 3.25rem;
+    font-weight: 600;
+    color: white;
+    line-height: 6.5rem;
+}
+.item1 p {
+    color: white;
+    font-size: 3.25rem;
+    font-weight: 400;
+    line-height: 5.5rem;
+}
+
+.item1 .tem  {
+    display: flex;
+    justify-content: space-between;
+    font-size: 3.5rem;
+    font-weight: 500;
+    line-height: .95em;
+}
+.item2 {
+    padding: 20px 33px 22px 27px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    /* background: rgba(255, 255, 255, 0.1); */
+    background: #fff;
+    
+}
+
+.item2 .weatherList {
+    width: 90%;
+    height: 230px;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.weatherList .box {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.weatherList .item{
+    width: 100%;
+    height: 100%;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    color: #6f7585;
+    border-width: 0 1px 0 0;
+    border-style: solid;
+    border-image: linear-gradient(
+        180deg,hsla(0,0%,87.1%,0) 0,#dedede 25%,#dedede 70%,hsla(0,0%,87.1%,0) 85%,hsla(0,0%,87.1%,0)) 1 100%;
+}
+
+.weatherList :nth-last-child(1) {
+    border: none;
+}
+
+.weatherList .item .title {
+    font-size: 1.8rem;
+    line-height: 1.66em;
+    font-weight: 700;
+}
+
+.weatherList .item .wendu {
+    font-size: 3.8rem;
+    line-height: .83em;
+}
+
+.icon i {
+    font-size: 6rem;
+}
+.weatherList .item .icon {
+    margin-top: 10px;
+}
+.weatherList .item .perzen {
+    font-size: 3.125rem;
+}
+
+
+
+
+.item3 {
+    padding: 20px 33px 22px 27px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    background: #fff;
+}
+
+.item3 h3 {
+    font-size: 2.4rem;
+}
+
+.item3 .weatherText {
+    box-sizing: border-box;
+    padding: 40px 0 0 0;
+}
+
+.item3 .text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.text .num {
+    font-size: 5.5rem;
+    font-weight: 600;
+    line-height: 1.4em;
+}
+.text .title {
+    font-size: 2rem;
+}
+
+.item3 .litteText {
+    color: gray;
+    margin-top: 20px;
+    text-align: center;
+}
+
+ 
+
+.main .main_right {
+    width: 30%;
+    justify-content: space-around;
+    height: 100%;
+    border-radius: 6px;
+}
+
+ 
+
+.tl {
+    text-align: left;
+}
+
+.tr {
+    text-align: right;
+}
+
+.fr {
+    text-align: right;
+}
+
+.fl {
+    float: left;
+}
+.tc {
+    text-align: center;
+}
+
+.element::-webkit-scrollbar { width: 0 !important }
+

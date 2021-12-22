@@ -6,11 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>天气预报</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./index/icon/iconfont.css">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./font/qweather-icons.css">
+    <link rel="stylesheet" href="./css/fontSize.css">
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./css/footer.css">
     <script type="module" src="https://unpkg.com/element-ui/lib/index.js"></script>
-    <script src="./index/icon/iconfont.js"></script>
+    <script src="./js/day.js"></script>
+    <script src="./font/qweather-icons.json"></script>
     <script src="./js/vue.js"></script>
     <script src="./js/component.js"></script>
     <script src="./js/router.js"></script>
@@ -19,8 +22,8 @@
 </head>
 
 <body>
-    <div id="app">
-        <header>
+    <div id="app" v-loading="loading">
+        <div class="header">
             <!-- 搜索框 -->
             <div class="search">
                 <div class="MainMenuHeader--wrapper">
@@ -33,32 +36,224 @@
                     </div>
                 </div>
             </div>
-        </header>
-        <main>
-
-            <div class="content">
-                <div class="weather_today">
-                    <div class="text">
-                        <h1>Beijing天气</h1>
-                        <p class="jz">截止09:06CST</p>
-                        <p class="du">-2℃</p>
-                        <p class="status">晴朗111111</p>
+        </div>
+        <div class="main">
+            <div class="center">
+                <div class="main_left">
+                    <div class="item1">
+                        <h1>{{name}} 天气</h1>
+                        <p>截至： {{updateTime}}</p>
+                        <p class="tem">
+                            <span class="colorWhite">{{now.temp}}℃</span>
+                            <span class="colorWhite">
+                                <i :class=`qi-${now.icon}` class="size100"></i>
+                            </span>
+                        </p>
+                        <div class="wea colorWhite">{{now.text}}</div>
                     </div>
-                    <my-icon title="tianqiyubao1" style="font-size: 150px;"></my-icon>
+
+                    <div class="item2">
+                        <h2>{{name}}未来三天天气预报</h2>
+                        <div class="weatherList">
+                            <div class="list1 item">
+                                <div class="box">
+                                    <div class="title">今天</div>
+                                    <div class="wendu">{{daily[0].tempMin}}~{{daily[0].tempMax}}℃</div>
+                                    <div class="icon">
+                                        <i :class=`qi-${daily[0].iconDay}`></i>
+                                    </div>
+                                    <div class="perzen">{{daily[0].textDay}} </div>
+                                </div>
+                            </div>
+                            <div class="list2 item">
+                                <div class="box">
+                                    <div class="title">明天</div>
+                                    <div class="wendu">{{daily[1].tempMin}}~{{daily[1].tempMax}}℃</div>
+                                    <div class="icon">
+                                        <i :class=`qi-${daily[1].iconDay}`></i>
+                                    </div>
+                                    <div class="perzen"> {{daily[1].textDay}}</div>
+                                </div>
+                            </div>
+                            <div class="list3 item">
+                                <div class="box">
+                                    <div class="title">后天</div>
+                                    <div class="wendu">{{daily[2].tempMin}}~{{daily[2].tempMax}}℃</div>
+                                    <div class="icon">
+                                        <i :class=`qi-${daily[2].iconDay}`></i>
+                                    </div>
+                                    <div class="perzen">{{daily[2].textDay}} </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item3">
+                        <h3>{{name}}天气预报</h3>
+                        <div class="weatherText">
+                            <el-row>
+                                <el-col :span="12" class="text tc">
+                                    <div class="num">{{now.feelsLike}}</div>
+                                    <div class="title">体感温度</div>
+                                </el-col>
+                                <el-col :span="12" class="text tc">
+                                    <div class="num">{{now.wind360}}</div>
+                                    <div class="title">风向角度</div>
+                                </el-col>
+                            </el-row>
+                            <div class="litteText">
+                                <el-row>
+                                    <el-col :span="12">
+                                        <el-row>
+                                            <el-col :span="12" class="tl">风力等级:</el-col>
+                                            <el-col :span="12" class="tc">{{now.windScale}}</el-col>
+                                        </el-row>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <el-row>
+                                            <el-col :span="12" class="tl">风速，公里/小时:</el-col>
+                                            <el-col :span="12" class="tc">{{now.windSpeed}}</el-col>
+                                        </el-row>
+                                    </el-col>
+                                </el-row>
+                                <el-row>
+                                    <el-col :span="12">
+                                        <el-row>
+                                            <el-col :span="12" class="tl">相对湿度，百分比数值:</el-col>
+                                            <el-col :span="12" class="tc">{{now.humidity}}</el-col>
+                                        </el-row>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <el-row>
+                                            <el-col :span="12" class="tl"> 当前小时累计降水量</el-col>
+                                            <el-col :span="12" class="tc">{{now.precip}}</el-col>
+                                        </el-row>
+                                    </el-col>
+                                </el-row>
+                                <el-row>
+                                    <el-col :span="12">
+                                        <el-row>
+                                            <el-col :span="12" class="tl">大气压强，默认单位：百帕:</el-col>
+                                            <el-col :span="12" class="tc">{{now.pressure}}</el-col>
+                                        </el-row>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <el-row>
+                                            <el-col :span="12" class="tl">能见度，默认单位：公里:</el-col>
+                                            <el-col :span="12" class="tc">{{now.vis}}</el-col>
+                                        </el-row>
+                                    </el-col>
+                                </el-row>
+                                <el-row>
+                                    <el-col :span="12">
+                                        <el-row>
+                                            <el-col :span="12" class="tl">云量，百分比数值:</el-col>
+                                            <el-col :span="12" class="tc">{{now.cloud}}</el-col>
+                                        </el-row>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <el-row>
+                                            <el-col :span="12" class="tl">露点温度:</el-col>
+                                            <el-col :span="12" class="tc">{{now.dew}}</el-col>
+                                        </el-row>
+                                    </el-col>
+                                </el-row>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+                <div class="main_right">
+                    <iframe src="https://dev.qweather.com/" frameborder="0" width="100%" height="100%" scrolling="auto"
+                        style="border-radius: 6px;"></iframe>
                 </div>
             </div>
-            <aside>wusudaifs </aside>
-        </main>
-
-
-
-
-        <!-- <p>
-            <router-link to="/foo">Go to Foo</router-link>
-            <router-link to="/bar">Go to Bar</router-link>
-        </p> -->
-        <!-- 路由出口 -->
-        <!-- <router-view></router-view> -->
+        </div>
+        <footer>
+            <div class="footer-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-6">
+                            <section class="left">
+                                <div class="brand">
+                                    <a href="https://dev.qweather.com">
+                                        <img src="./img/logo-s-light.png" width="30" alt="QWeather Logo">
+                                        <h3>和风天气开发平台</h3>
+                                    </a>
+                                </div>
+                                <div class="subtitle">
+                                    一个简单 · 高效 · 强大的天气数据服务
+                                </div>
+                                <div class="goto-qw no-underline">
+                                    <a href="https://www.qweather.com" target="_blank" role="button"
+                                        rel="noopener noreferrer">查询更多天气？访问和风天气</a>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-6">
+                            <section class="right">
+                                <div class="row">
+                                    <div class=" col-xs-5 col-sm-4 col-md-5">
+                                        <h3>开发文档</h3>
+                                        <ul>
+                                            <li><a href="/docs/api/">API开发文档</a></li>
+                                            <li><a href="/docs/ios-sdk/">iOS SDK</a></li>
+                                            <li><a href="/docs/android-sdk/">Android SDK</a></li>
+                                            <li><a href="/docs/widget/">天气插件</a></li>
+                                            <li><a href="/docs/owp/">天气普拉斯</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-3 col-sm-4 col-md-3">
+                                        <h3>帮助</h3>
+                                        <ul>
+                                            <li><a href="/help/general/">一般问题</a></li>
+                                            <li><a href="/help/buy/">购买</a></li>
+                                            <li><a href="/help/data/">数据产品</a></li>
+                                            <li><a href="/help/account/">用户账号</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4">
+                                        <h3>更多</h3>
+                                        <ul>
+                                            <li><a href="https://www.qweather.com/app/" target="_blank"
+                                                    rel="noopener noreferrer">下载APP</a></li>
+                                            <li><a href="https://www.qweather.com/contact" target="_blank"
+                                                    rel="noopener noreferrer">联系</a></li>
+                                            <li><a href="https://www.qweather.com/terms/developers-tos" target="_blank"
+                                                    rel="noopener noreferrer">使用条款</a></li>
+                                            <li><a href="https://www.qweather.com/terms/privacy" target="_blank"
+                                                    rel="noopener noreferrer">隐私政策</a></li>
+                                            <li><a href="https://www.qweather.com/terms/disclaimer" target="_blank"
+                                                    rel="noopener noreferrer">免责声明</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6">© 2021 <a href="https://www.qweather.com"
+                                target="_blank" rel="noopener noreferrer">QWeather</a> 本站由<a
+                                href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a>驱动运行在<a
+                                href="https://github.com/qwd" target="_blank" rel="noopener noreferrer">Github</a></div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 text-right"><a href="https://beian.miit.gov.cn"
+                                target="_blank" rel="noopener noreferrer">京ICP备15048401号-11</a> &nbsp; <a
+                                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502042548"
+                                target="_blank" rel="noopener noreferrer">京公网安备11010502042548号</a></div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 

@@ -16,23 +16,26 @@ window.onload = function () {
     data: {
       cityOrCode: "",
       eys: "cc1269769bd442e6bed442f41f27c17a",
-      updateTime:"",
-      now:{},
-      name:"",
-      activeIndex:1
+      updateTime: "",
+      now: {},
+      daily:[{},{},{}],//未来三天
+      name: "",
+      activeIndex: 1,
+      loading:true
     },
     mounted() {
-      this.querySearchAsync("北京").then((res)=>{
+      this.querySearchAsync("北京").then((res) => {
         this.handleSelect(res)
       })
     },
     methods: {
+      // 城市API
       querySearchAsync(queryString, callback) {
         if (!queryString) {
           callback("");
           return;
         }
-        return new Promise((resovle,reject)=>{
+        return new Promise((resovle, reject) => {
           axios
             .get(
               `https://geoapi.qweather.com/v2/city/lookup?location=${queryString}&key=${this.eys}`
@@ -40,6 +43,7 @@ window.onload = function () {
             .then((res) => {
               let { code, location } = res.data;
               if (code == 200) {
+                this.loading = false
                 resovle(location[0])
                 callback(
                   location.map((item) => {
@@ -51,9 +55,10 @@ window.onload = function () {
                 );
               } else {
                 reject()
-                this.$message({
-                  message: "输入不正确！",
-                  type: "warning",
+                this.$notify({
+                  title: '提示',
+                  message: '输入不正确！',
+                  duration: 0
                 });
               }
             });
@@ -66,19 +71,28 @@ window.onload = function () {
             `https://devapi.qweather.com/v7/weather/now?location=${item.id}&key=${this.eys}`
           )
           .then((res) => {
-            let { code, now ,updateTime} = res.data;
+            let { code, now, updateTime } = res.data;
             if (code == 200) {
               this.updateTime = dayjs(updateTime).format('HH:mm:ss');
               this.now = now
-              console.log(now, "now");
             }
           });
-
-        console.log(item, "item");
+          this.hanldeSelect24Hours(item)
+      },
+      // 未来三天天气预报
+      hanldeSelect24Hours(item) {
+        axios.get(`https://devapi.qweather.com/v7/weather/3d?location=${item.id}&key=${this.eys}`).then(res => {
+          let { code,  daily } = res.data;
+          if (code == 200) {
+            console.log(daily,"daily")
+            this.daily = daily
+          }
+        })
       },
       handleSelectOptions(item) {
-        console.log(item,"item")
+        console.log(item, "item")
       }
     },
   }).$mount("#app");
 };
+

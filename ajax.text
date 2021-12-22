@@ -1,0 +1,71 @@
+###########Ajax###########################
+Ajax即Asynchronous Javascript And XML（异步JavaScript和XML）,在 2005年被Jesse James Garrett提出的新术语，用来描述一种使用现有技术集合的‘新’方法，包括: HTML 或 XHTML, CSS, JavaScript, DOM, XML, XSLT, 以及最重要的XMLHttpRequest。 [3]  使用Ajax技术网页应用能够快速地将增量更新呈现在用户界面上，而不需要重载（刷新）整个页面，这使得程序能够更快地回应用户的操作。
+Ajax 不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术。
+使用 JavaScript 向服务器提出请求并处理响应而不阻塞用户核心对象XMLHttpRequest。通过这个对象，您的 JavaScript 可在不重载页面的情况与 Web 服务器交换数据，即在不需要刷新页面的情况下，就可以产生局部刷新的效果。
+Ajax 在浏览器与 Web 服务器之间使用异步数据传输（HTTP 请求），这样就可使网页从服务器请求少量的信息，而不是整个页面。
+AJAX 工作原理
+AJAX 工作原理
+Ajax可使因特网应用程序更小、更快，更友好。
+Ajax 是一种独立于 Web 服务器软件的浏览器技术。　Ajax 基于下列 Web 标准：
+JavaScript、XML、HTML与 CSS 在 Ajax 中使用的 Web 标准已被良好定义，并被所有的主流浏览器支持。Ajax 应用程序独立于浏览器和平台。
+Web 应用程序较桌面应用程序有诸多优势；它们能够涉及广大的用户，它们更易安装及维护，也更易开发。
+
+
+原理：new XMLHttpRequest 对象
+手写Ajax源码
+/* 
+ method
+ url
+ data
+ success 数据下载成功以后执行的函数
+ error  数据下载失败以后执行的函数
+ */
+function $ajax({ method = "get", url, data, success, error }) {
+  //1、创建ajax对象
+  var xhr = null;
+  try {
+    xhr = new XMLHttpRequest();
+  } catch (error) {
+    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  //判断如果数据存在
+  if (data) {
+    data = querystring(data);
+  }
+  if (method == "get" && data) {
+    url += "?" + data;
+  }
+  xhr.open(method, url, true);
+  if (method == "get") {
+    xhr.send();
+  } else {
+    //必须在send方法之前，去设置请求的格式
+    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+    xhr.send(data);
+  }
+  //4、等待数据响应
+  ``
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+      //判断本次下载的状态码都是多少
+      if (xhr.status == 200) {
+        /* 
+        如何去处理数据操作不确定
+        回调函数
+        */
+        if (success) {
+          // alert(2);
+          success(xhr.responseText);
+        }
+      } else {
+        if (error) {
+          error("Error:" + xhr.status);
+        }
+      }
+    }
+  }
+}
+ 
+
+本次作业使用了axios,axios是基于Promise的 HTTP 库，支持promise所有的API。原理是在Ajax的基础上进行了多层封装。其中包括请求拦截和请求响应、请求头的设置以及转换请求数据和响应数据.....。与原生的Ajax
+相比，安全性更高，客户端支持防御 XSRF。
